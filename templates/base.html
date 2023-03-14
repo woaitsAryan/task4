@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask App with Dynamic Drop-Down Boxes</title>
+  </head>
+  <body>
+    <h1>Select Options</h1>
+    <form action="/" method="POST">
+      <label for="dropdown1">Option 1:</label>
+      <select name="dropdown1" id="dropdown1">
+        {% for option in dropdown1_options %}
+        <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+      </select>
+      <br>
+      <label for="dropdown2">Option 2:</label>
+      <select name="dropdown2" id="dropdown2">
+        {% for option in dropdown2_options %}
+        <option value="{{ option }}">{{ option }}</option>
+        {% endfor %}
+      </select>
+      <br>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>

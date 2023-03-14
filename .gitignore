@@ -2,3 +2,5 @@
 /Fortune_1000.csv
 /movies.db
 /genderbabynames.sqlite
+venv/
+__pycache__/
