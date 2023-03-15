@@ -9,7 +9,6 @@ statecodes = {
     'Telangana': 'TG',
     'Maharashtra': 'MH',
     'Karnataka':'KA',
-    'Uttarakhand' : 'UK',
     'Goa':'GA',
     'Delhi':'DL'
 }
@@ -39,9 +38,9 @@ def process(data: Data):
             sqlquery = f"SELECT date,deaths FROM {statecode}_case_info"
     elif state == "Goa":
         if data == "Daily Cases":
-            sqlquery = f"SELECT date, total_cases_new FROM {statecode}_case_info"
+            sqlquery = f"SELECT date, total_cases_new FROM {statecode}_overview"
         elif data == "Daily Deaths":
-            sqlquery = f"SELECT date, deaths_new FROM {statecode}_case_info"
+            sqlquery = f"SELECT date, deaths_new FROM {statecode}_overview"
     else:
         sqlquery = f"SELECT date, {datacode} FROM {statecode}_case_info"
             

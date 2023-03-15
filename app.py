@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/', methods = ["POST","GET"])
 def index():
-    states_options = ['West Bengal', 'Telangana', 'Maharashtra', 'Karnataka', 'Uttarakhand', 'Goa', 'Delhi']
+    states_options = ['West Bengal', 'Telangana', 'Maharashtra', 'Karnataka', 'Goa', 'Delhi']
     data_options = ['Daily Cases', 'Daily Deaths']
     return render_template('base.html', states_options=states_options, data_options=data_options)
 
@@ -38,11 +38,12 @@ def graph():
     
     with open("properties.ipynb") as fp:
         nb = json.load(fp)
-
+    average,maxvalue,minvalue = None, None, None
+    
     for cell in nb['cells']:
         if cell['cell_type'] == 'code':
             source = ''.join(line for line in cell['source'] if not line.startswith('%'))
             exec(source, globals(), locals())
     
-    return render_template('graph.html')
+    return render_template('graph.html', plottingdata = cleaneddata, average = average, maxvalue = maxvalue, minvalue = minvalue)
     
