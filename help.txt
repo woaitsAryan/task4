@@ -13,7 +13,3 @@ Uttarakhand | UK_case_info | date | cases_new | deaths_total
 Goa | GA_overview | date |  total_cases_new | deaths_new
 
 Delhi | DL_case_info | date | cases_positive | deaths 
-
-
-
-

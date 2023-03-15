@@ -14,6 +14,7 @@ def index():
     data_options = ['Daily Cases', 'Daily Deaths']
     return render_template('base.html', states_options=states_options, data_options=data_options)
 
+
 @app.route('/graph', methods = ["POST"])
 def graph():
     state = request.form['states']
@@ -33,10 +34,15 @@ def graph():
     cleaneddata = cleaneddatajson.json()['data']
     
     df = pd.read_json(json.dumps(cleaneddata))
-    
     df.to_csv('data.csv', index = False)
     
-    
+    with open("properties.ipynb") as fp:
+        nb = json.load(fp)
+
+    for cell in nb['cells']:
+        if cell['cell_type'] == 'code':
+            source = ''.join(line for line in cell['source'] if not line.startswith('%'))
+            exec(source, globals(), locals())
     
     return render_template('graph.html')
     
