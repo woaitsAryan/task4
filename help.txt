@@ -1,0 +1,19 @@
+West Bengal | WB_case_info | date | cases_new | deaths_new |
+
+Telangana | TG_case_info | date | cases_new | deaths_new
+
+#Haryana | HR_case_info | date | cases_new | deaths_total
+
+Maharashtra | MH_case_info | date | cases_new | deaths_new
+
+Karnataka | KA_case_info | date | cases_new | deaths_new
+
+Uttarakhand | UK_case_info | date | cases_new | deaths_total
+
+Goa | GA_overview | date |  total_cases_new | deaths_new
+
+Delhi | DL_case_info | date | cases_positive | deaths 
+
+
+
+

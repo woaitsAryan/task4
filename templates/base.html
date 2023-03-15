@@ -6,16 +6,16 @@
   <body>
     <h1>Select Options</h1>
     <form action="/graph" method="POST">
-      <label for="dropdown1">Option 1:</label>
-      <select name="dropdown1" id="dropdown1">
-        {% for option in dropdown1_options %}
+      <label for="states">Option 1:</label>
+      <select name="states" id="states">
+        {% for option in states_options %}
         <option value="{{ option }}">{{ option }}</option>
         {% endfor %}
       </select>
       <br>
-      <label for="dropdown2">Option 2:</label>
-      <select name="dropdown2" id="dropdown2">
-        {% for option in dropdown2_options %}
+      <label for="data">Option 2:</label>
+      <select name="data" id="data">
+        {% for option in data_options %}
         <option value="{{ option }}">{{ option }}</option>
         {% endfor %}
       </select>
