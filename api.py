@@ -31,14 +31,9 @@ def process(data: Data):
     statecode = statecodes[state]
     datacode = datacodes[data] # type: ignore
     sqlquery = None
-    if state == "Delhi":
+    if state == "Goa":
         if data == "Daily Cases":
-            sqlquery = f"SELECT date,cases_positive FROM {statecode}_case_info"
-        elif data == "Daily Deaths":
-            sqlquery = f"SELECT date,deaths FROM {statecode}_case_info"
-    elif state == "Goa":
-        if data == "Daily Cases":
-            sqlquery = f"SELECT date, total_cases_new FROM {statecode}_overview"
+            sqlquery = f"SELECT date, cases_new FROM {statecode}_overview"
         elif data == "Daily Deaths":
             sqlquery = f"SELECT date, deaths_new FROM {statecode}_overview"
     else:

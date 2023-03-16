@@ -4,3 +4,4 @@
 /genderbabynames.sqlite
 venv/
 __pycache__/
+/test.py

@@ -8,4 +8,4 @@ Karnataka | KA_case_info | date | cases_new | deaths_new
 
 Goa | GA_overview | date |  total_cases_new | deaths_new
 
-Delhi | DL_case_info | date | cases_positive | deaths 
+Delhi | DL_case_info | date | cases_new | deaths_new 

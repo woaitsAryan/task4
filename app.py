@@ -3,6 +3,7 @@ import requests
 import json
 from cs50 import SQL 
 import pandas as pd
+from importnb import imports
 
 db = SQL("sqlite:///covid19-india.sqlite")
 
@@ -32,18 +33,13 @@ def graph():
     cleaneddatajson = requests.post("http://127.0.0.1:8080/clean", json = inputclean)
     
     cleaneddata = cleaneddatajson.json()['data']
-    
+
     df = pd.read_json(json.dumps(cleaneddata))
     df.to_csv('data.csv', index = False)
     
-    with open("properties.ipynb") as fp:
-        nb = json.load(fp)
-    average,maxvalue,minvalue = None, None, None
-    
-    for cell in nb['cells']:
-        if cell['cell_type'] == 'code':
-            source = ''.join(line for line in cell['source'] if not line.startswith('%'))
-            exec(source, globals(), locals())
-    
-    return render_template('graph.html', plottingdata = cleaneddata, average = average, maxvalue = maxvalue, minvalue = minvalue)
-    
+    with imports("ipynb"):
+        import properties  # type: ignore
+
+    x = properties.run()
+    print(x)
+    return render_template('graph.html', plottingdata = cleaneddata)
