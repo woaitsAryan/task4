@@ -43,20 +43,23 @@ def process(data: Data):
 
 class DataClean(BaseModel):
     dirtydata :list
+    datatype: str
 
 @app.post("/clean")
 def clean(dirtydata:DataClean):
     
     plotdata = dirtydata.dict()
     
+    datatype = datacodes[plotdata['datatype']]
+    
     plotdata = plotdata["dirtydata"]
     
     for i in range(len(plotdata)):
-        if plotdata[i]["cases_new"] == None:
+        if plotdata[i][datatype] == None:
             if i == 0:
-                plotdata[0]['cases_new'] = 0
+                plotdata[0][datatype] = 0
             else:
-                plotdata[i]["cases_new"] = plotdata[i-1]["cases_new"]
+                plotdata[i][datatype] = plotdata[i-1][datatype]
     
     return {"data" : plotdata}
 

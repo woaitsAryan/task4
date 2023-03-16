@@ -28,7 +28,7 @@ def graph():
     
     plottingdata = db.execute(outputquery)
     
-    inputclean = {"dirtydata" :plottingdata}
+    inputclean = {"dirtydata" :plottingdata, "datatype" : data}
     
     cleaneddatajson = requests.post("http://127.0.0.1:8080/clean", json = inputclean)
     
@@ -40,6 +40,7 @@ def graph():
     with imports("ipynb"):
         import properties  # type: ignore
 
-    x = properties.run()
-    print(x)
-    return render_template('graph.html', plottingdata = cleaneddata)
+    properties = properties.run()
+
+    return render_template('graph.html', plottingdata = cleaneddata, average = properties["average"], minvalue = properties["minvalue"],
+                           maxvalue = properties['maxvalue'], mindate = properties['mindate'], maxdate = properties['maxdate'])
