@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Flask App with Dynamic Drop-Down Boxes</title>
+    <title>Task4</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'styles.css') }}">
   </head>
   <body>
     <h1>Select Options</h1>
     <form action="/graph" method="POST">
       <label for="states">Option 1:</label>
       <select name="states" id="states">
+
         {% for option in states_options %}
         <option value="{{ option }}">{{ option }}</option>
         {% endfor %}

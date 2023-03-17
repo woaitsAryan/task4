@@ -1,17 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="{{ url_for ('static', filename = 'data1.json')}}" async></script>
-    <script src="{{ url_for('static', filename='chart.js') }}" async></script>
+<html>
+  <head>
+    <title>Task4 graph</title>
 
-</head>
-<body>
-    <div id="chart_div"></div>
-    <div class="jsData" style="display:none">{{plotteddata}}</div>
-</body>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'styles.css') }}">
+  </head>
+  <body>
+
+    <div id="chart"></div>
+
+    <script>
+      
+      const data = {{ data | tojson }}; // type: ignore
+      var datatype = "{{datatype}}";
+
+      const xData = data.map(d => new Date(d.date));
+      const yData = data.map(d => d[datatype]);
+
+
+      const trace = {
+        x: xData,
+        y: yData,
+        type: "scatter",
+        mode: "lines",
+        line: { color: "blue" }
+      };
+
+
+      const layout = {
+        title: "Rendered data",
+        xaxis: { title: "Date" },
+        yaxis: { title: datatype }
+      };
+
+
+      Plotly.newPlot("chart", [trace], layout);
+    </script>
+    <div>The maximum value is {{maxvalue}} on {{maxdate}}</div>
+    <div>The minumum value is {{minvalue}} on {{mindate}}</div>
+    <div>The average is {{average}}</div>
+  </body>
 </html>

@@ -5,3 +5,10 @@
 venv/
 __pycache__/
 /test.py
+node_modules/
+/package-lock.json
+/package.json
+templates/graphalt.html
+templates/graphaltalt.html
+static/data1.json
+static/chart.

@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 import json
-
+import datetime
 app = FastAPI()
 
 statecodes = {
@@ -39,7 +39,7 @@ def process(data: Data):
     else:
         sqlquery = f"SELECT date, {datacode} FROM {statecode}_case_info"
             
-    return {"sqlquery" : sqlquery}
+    return {"sqlquery" : sqlquery, "datatype" :datacode}
 
 class DataClean(BaseModel):
     dirtydata :list
@@ -61,7 +61,18 @@ def clean(dirtydata:DataClean):
             else:
                 plotdata[i][datatype] = plotdata[i-1][datatype]
     
-    return {"data" : plotdata}
+    dates = [datetime.datetime.strptime(ts['date'], "%Y-%m-%d") for ts in plotdata]
+
+    dates.sort()
+
+    sorteddates = [datetime.datetime.strftime(ts, "%Y-%m-%d") for ts in dates]
+    sorteddict = []
+    for i in sorteddates:
+        for j in range(len(plotdata)):
+            if i == plotdata[j]['date']:
+                sorteddict.append(plotdata[j])
+    
+    return {"data" : sorteddict}
 
 if __name__ == "__main__":
     import uvicorn
