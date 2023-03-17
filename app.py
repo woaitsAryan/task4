@@ -1,5 +1,6 @@
 from flask import Flask, render_template,request
 import requests
+from flask_cors import CORS
 import json
 from cs50 import SQL 
 import pandas as pd
@@ -8,6 +9,8 @@ from importnb import imports
 db = SQL("sqlite:///covid19-india.sqlite")
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "http://localhost:5000"}})
+
 
 @app.route('/', methods = ["POST","GET"])
 def index():
@@ -37,10 +40,13 @@ def graph():
     df = pd.read_json(json.dumps(cleaneddata))
     df.to_csv('data.csv', index = False)
     
-    with imports("ipynb"):
+    with imports("ipynb"): # type: ignore
         import properties  # type: ignore
 
     properties = properties.run()
-
-    return render_template('graph.html', plottingdata = cleaneddata, average = properties["average"], minvalue = properties["minvalue"],
-                           maxvalue = properties['maxvalue'], mindate = properties['mindate'], maxdate = properties['maxdate'])
+    save_file = open("static/data1.json", "w")
+    #cleaneddata = eval(str(cleaneddata).replace("\"","'"))
+    json.dump(cleaneddata, save_file,indent = 6)
+    save_file.close()
+    
+    return render_template('graph.html', plotteddata = cleaneddata)

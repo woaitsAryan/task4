@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Flask App with Dynamic Drop-Down Boxes</title>
-  </head>
-  <body>
-    <h1>Nice</h1>
-    
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{{ url_for ('static', filename = 'data1.json')}}" async></script>
+    <script src="{{ url_for('static', filename='chart.js') }}" async></script>
+
+</head>
+<body>
+    <div id="chart_div"></div>
+    <div class="jsData" style="display:none">{{plotteddata}}</div>
+</body>
 </html>
