@@ -12,7 +12,7 @@
 
     <script>
       
-      const data = {{ data | tojson }}; // type: ignore
+      const data = {{ data | tojson }}; // type: ignore 
       var datatype = "{{datatype}}";
 
       const xData = data.map(d => new Date(d.date));
@@ -37,8 +37,12 @@
 
       Plotly.newPlot("chart", [trace], layout);
     </script>
-    <div>The maximum value is {{maxvalue}} on {{maxdate}}</div>
-    <div>The minumum value is {{minvalue}} on {{mindate}}</div>
-    <div>The average is {{average}}</div>
+
+    <div class = "graphtexty">The maximum value is <span class = "graphtextbold">{{maxvalue}}</span> on <span class = "graphtextbold">{{maxdate}}</span></div>
+        
+    <div class = "graphtexty">The minimum value is <span class = "graphtextbold">{{minvalue}}</span> on <span class = "graphtextbold">{{mindate}}</span></div>
+
+
+    <div class = "graphtexty">The average value is <span class = "graphtextbold">{{average}}</span></div>
   </body>
 </html>

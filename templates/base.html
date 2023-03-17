@@ -7,16 +7,17 @@
   <body>
     <h1>Select Options</h1>
     <form action="/graph" method="POST">
-      <label for="states">Option 1:</label>
+      <label for="states" class = "texty">Option 1:</label>
       <select name="states" id="states">
-
+        <option value = "">Select state</option>
         {% for option in states_options %}
         <option value="{{ option }}">{{ option }}</option>
         {% endfor %}
       </select>
       <br>
-      <label for="data">Option 2:</label>
+      <label for="data" class = "texty">Option 2:</label>
       <select name="data" id="data">
+        <option value = "">Select datatype</option>
         {% for option in data_options %}
         <option value="{{ option }}">{{ option }}</option>
         {% endfor %}
