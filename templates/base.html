@@ -2,15 +2,15 @@
 <html>
   <head>
     <title>Task4</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'styles.css') }}"> 
   </head>
   <body>
     <h1>Select Options</h1>
     <form action="/graph" method="POST">
-      <label for="states" class = "texty">Option 1:</label>
+      <label for="states" class = "texty">Option 1:</label> 
       <select name="states" id="states">
         <option value = "">Select state</option>
-        {% for option in states_options %}
+        {% for option in states_options %} <!-- Rendering all the state values using a Jinja loop-->
         <option value="{{ option }}">{{ option }}</option>
         {% endfor %}
       </select>
@@ -18,7 +18,7 @@
       <label for="data" class = "texty">Option 2:</label>
       <select name="data" id="data">
         <option value = "">Select datatype</option>
-        {% for option in data_options %}
+        {% for option in data_options %} <!-- Rendering all the data types using a Jinja loop-->
         <option value="{{ option }}">{{ option }}</option>
         {% endfor %}
       </select>

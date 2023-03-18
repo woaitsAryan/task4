@@ -8,11 +8,11 @@
   </head>
   <body>
 
-    <div id="chart"></div>
+    <div id="chart"></div> <!-- Rendering the chart-->
 
     <script>
       
-      const data = {{ data | tojson }}; // type: ignore 
+      const data = {{ data | tojson }}; // type: ignore  <!--Injecting all the data into JS -->
       var datatype = "{{datatype}}";
 
       const xData = data.map(d => new Date(d.date));
@@ -35,7 +35,7 @@
       };
 
 
-      Plotly.newPlot("chart", [trace], layout);
+      Plotly.newPlot("chart", [trace], layout); //Displaying all the data
     </script>
 
     <div class = "graphtexty">The maximum value is <span class = "graphtextbold">{{maxvalue}}</span> on <span class = "graphtextbold">{{maxdate}}</span></div>
