@@ -1,0 +1,8 @@
+importnb
+pandas
+fastapi
+pydantic
+datetime
+uvicorn
+flask
+cs50
